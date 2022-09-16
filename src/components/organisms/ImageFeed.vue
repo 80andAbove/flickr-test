@@ -1,22 +1,14 @@
 <template>
   <div class="container">
-    <div>
-      <h1>TEST</h1>
-      <tbody>
-        <td v-if="loading">Loading...</td>
-        <ul v-else>
-          <td v-for="(image, index) in images" :key="index">
-            <img :src="image.url_n" alt="" />
-          </td>
-        </ul>
-      </tbody>
+    <div class="gallery" v-for="(image, index) in images" :key="index">
+      <img :src="image.url_n" alt="" />
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import config from "../../config.js";
+import config from "../../../config.js";
 
 export default {
   name: "ImageFeed",
