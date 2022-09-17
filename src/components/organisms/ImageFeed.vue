@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
-    <div class="gallery" v-for="(image, index) in images" :key="index">
-      <img :src="image.url_n" alt="" />
-    </div>
+  <div
+    class="gallery col-lg-4 col-md-6 col-sm-12"
+    v-for="(image, index) in images"
+    :key="index"
+  >
+    <img :src="image.url_n" alt="" />
   </div>
 </template>
 
