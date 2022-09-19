@@ -1,6 +1,16 @@
 <template>
-  <router-link to="/image/id">About</router-link>
-  <router-view />
+  <div class="app">
+    <HomeView />
+  </div>
 </template>
+
+<script>
+import HomeView from "./views/HomeView.vue";
+export default {
+  components: {
+    HomeView,
+  },
+};
+</script>
 
 <style></style>

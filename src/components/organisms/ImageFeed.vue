@@ -14,6 +14,7 @@
         </p>
         <p>Taken On: {{ image.datetaken }}</p>
       </div>
+      <a @click="getImageDetail()" class="btn btn-primary">See More Details</a>
     </div>
   </div>
   <router-view></router-view>
