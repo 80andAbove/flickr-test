@@ -6,31 +6,49 @@
   >
     <div class="card" id="imageCard">
       <div>
-        <img :src="image.url_n" alt="" id="flickrImg" />
+        <img :src="image.url_n" alt="" id="flickrImg" @click="image" />
       </div>
-      <div class="ml-auto mr-auto" id="cardCaption">
-        <p>
-          Taken By: <strong>{{ image.ownername }}</strong>
-        </p>
-        <p>Taken On: {{ image.datetaken }}</p>
+      <button
+        @click="isActive = !isActive"
+        :class="{ active: isActive }"
+        class="btn btn-primary"
+        id="toggleButton"
+      >
+        {{ isActive ? "See More Details" : "Close Details" }}
+      </button>
+      <div v-if="!isActive">
+        <ImageDetails :image="image" />
       </div>
-      <a @click="getImageDetail()" class="btn btn-primary">See More Details</a>
     </div>
   </div>
-  <router-view></router-view>
 </template>
 
 <script>
+import ImageDetails from "./ImageDetails.vue";
 export default {
   name: "ImageFeed",
-  components: {},
-  methods: {},
+  data() {
+    return {
+      isActive: true,
+    };
+  },
+  components: {
+    ImageDetails,
+  },
+  methods: {
+    toggle() {
+      this.isActive = this.isActive = !this.enable;
+    },
+    getImage() {
+      this.images.find((image) => image.id === this.id);
+    },
+  },
   computed: {
     images() {
       return this.$store.state.images;
     },
   },
-  mounted() {
+  created() {
     this.$store.dispatch("fetchImages");
   },
 };
@@ -49,16 +67,15 @@ export default {
   box-shadow: 0.25px 0.25px black;
 }
 
-.gallery {
-}
-
 #flickrImg {
   width: 20rem;
   height: 15rem;
 }
 
-#cardCaption {
-  margin-left: auto;
-  margin-right: auto;
+#toggleButton {
+}
+
+.invisibility {
+  visibility: hidden;
 }
 </style>
